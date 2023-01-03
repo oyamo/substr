@@ -3,9 +3,9 @@ package main
 import (
 	"flag"
 	"fmt"
+	"github.com/oyamo/substr/src"
 	"os"
 	"runtime/pprof"
-	"substr/src"
 )
 
 func main() {
