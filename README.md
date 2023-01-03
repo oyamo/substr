@@ -21,6 +21,12 @@ written in Golang and is open-sourced under the MIT License.
  $ substr -version
  ```
 
+## Configuration
+
+`substr` does not currently have any configurable options. All behavior is controlled through command-line flags and arguments.
+
+If you have specific feature requests or suggestions for additional configuration options, please open an issue on the `substr` GitHub repository: https://github.com/oyamo/substr/issues
+
 
 ## Usage 
 ```shell
@@ -46,3 +52,10 @@ Examples:
 
 ```
 
+## License
+
+`substr` is released under the MIT License.
+
+The MIT License is a permissive license that allows users to use, modify, and distribute the software for any purpose, as long as the copyright notice and the permission notice are included with the software.
+
+A copy of the MIT License is included in the `LICENSE` file in the root directory of the `substr` repository. You can also view the license online at https://opensource.org/licenses/MIT.
