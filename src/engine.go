@@ -75,6 +75,12 @@ func (e Engine) substituteChunk(start, stop uint, chanSubProgress chan subProgre
 			}
 
 			tmpFileName := fmt.Sprintf("%s/%s", os.TempDir(), uuid.New().String())
+			if e.Input.OutputDir != "" {
+				tmpFileName = fmt.Sprintf("%s/%s", e.Input.OutputDir, filepath.Base(e.Input.Files[i]))
+			}
+			if e.Input.OuputFile != "" && len(e.Input.Files) == 1 {
+				tmpFileName = e.Input.OuputFile
+			}
 			// open file for output
 			tmpFile, err := os.OpenFile(tmpFileName, os.O_CREATE|os.O_RDWR|os.O_TRUNC, 0666)
 			if err != nil {
@@ -116,15 +122,17 @@ func (e Engine) substituteChunk(start, stop uint, chanSubProgress chan subProgre
 				return
 			}
 
-			_, err = io.Copy(dest, source)
-			if err != nil {
-				chanSubProgress <- subProgress{Index: uint(i), Error: err}
+			if e.Input.OutputDir == "" && e.Input.OuputFile == "" {
+				_, err = io.Copy(dest, source)
+				if err != nil {
+					chanSubProgress <- subProgress{Index: uint(i), Error: err}
+					err = os.Remove(tmpFileName)
+					close(chanSubProgress)
+					return
+				}
 				err = os.Remove(tmpFileName)
-				close(chanSubProgress)
-				return
 			}
 
-			err = os.Remove(tmpFileName)
 			chanSubProgress <- subProgress{uint(i), nil}
 
 		}

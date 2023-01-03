@@ -5,18 +5,9 @@ import (
 	"fmt"
 	"github.com/oyamo/substr/src"
 	"os"
-	"runtime/pprof"
 )
 
 func main() {
-
-	f, err := os.Create("cpu.profile")
-	if err != nil {
-		return
-	}
-
-	pprof.StartCPUProfile(f)
-	defer pprof.StopCPUProfile()
 
 	engine, err := src.NewEngine()
 	if err != nil {
