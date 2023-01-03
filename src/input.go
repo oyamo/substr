@@ -7,12 +7,13 @@ import (
 )
 
 const (
-	FLAG_HELP = 1 << iota
-	FLAG_D    // -d, --output-dir
-	FLAG_V    // -v, --verbose
-	FLAG_O    // -o, --output-file
-	FLAG_T    // -t, --original-text
-	FLAG_S    // -s, --substitute-text
+	FLAG_HELP    = 1 << iota
+	FLAG_D       // -d, --output-dir
+	FLAG_V       // -v, --verbose
+	FLAG_VERSION // -version
+	FLAG_O       // -o, --output-file
+	FLAG_T       // -t, --original-text
+	FLAG_S       // -s, --substitute-text
 
 )
 
@@ -67,7 +68,7 @@ func NewInput() (*Input, error) {
 	}
 
 	if *version {
-		input.Flags = append(input.Flags, FLAG_V)
+		input.Flags = append(input.Flags, FLAG_VERSION)
 		return input, nil
 	}
 

@@ -172,6 +172,10 @@ func (e Engine) substituteFiles() error {
 }
 
 func (e Engine) Run() (err error) {
+	if e.Input.HasFlag(FLAG_VERSION) {
+		Version()
+		return
+	}
 	err = e.substituteFiles()
 	return
 }

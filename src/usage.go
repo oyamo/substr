@@ -3,7 +3,10 @@ package src
 import (
 	"fmt"
 	"os"
+	"runtime"
 )
+
+const VERSION = 1.0
 
 func Usage() {
 	fmt.Fprintf(os.Stderr, `substr
@@ -22,4 +25,8 @@ Argument            Shortened	Description
 Example: (substr -t foo -s bar example.txt) replaces all 
 occurences of foo with bar
 `)
+}
+
+func Version() {
+	fmt.Fprintf(os.Stdout, "substr: %.1f, golang: %s\n", VERSION, runtime.Version())
 }
